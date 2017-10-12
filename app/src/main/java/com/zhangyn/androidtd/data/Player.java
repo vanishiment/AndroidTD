@@ -3,6 +3,7 @@ package com.zhangyn.androidtd.data;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import com.google.auto.value.AutoValue;
@@ -14,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @AutoValue
-public abstract class Player implements PlayerModel {
+public abstract class Player implements PlayerModel,Parcelable {
 
-  public static final Factory<Player> FACTORY = new Factory<>(new Creator<Player>() {
+  public static final Factory<Player> FACTORY = new Factory<>(new PlayerModel.Creator<Player>() {
     @Override public Player create(long _id, @NonNull String name, long number) {
       return new AutoValue_Player(_id, name, number);
     }

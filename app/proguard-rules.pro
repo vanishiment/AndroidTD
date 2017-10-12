@@ -23,3 +23,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+# AutoParcel
+-keep class **AutoValue_*$1 { }
+-keepclassmembers class * implements android.os.Parcelable {
+    static ** CREATOR;
+}
