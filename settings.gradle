@@ -1,1 +1,1 @@
-include ':app', ':todoapp', ':loaderlib'
+include ':app', ':todoapp', ':loaderlib', ':pluginlib'

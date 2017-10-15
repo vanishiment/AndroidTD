@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/loaderlib" />
+            <option value="$PROJECT_DIR$/pluginlib" />
             <option value="$PROJECT_DIR$/todoapp" />
           </set>
         </option>
