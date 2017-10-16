@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/AndroidTD.iml" filepath="$PROJECT_DIR$/AndroidTD.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/loaderlib/loaderlib.iml" filepath="$PROJECT_DIR$/loaderlib/loaderlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myplugin/myplugin.iml" filepath="$PROJECT_DIR$/myplugin/myplugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/pluginlib/pluginlib.iml" filepath="$PROJECT_DIR$/pluginlib/pluginlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/todoapp/todoapp.iml" filepath="$PROJECT_DIR$/todoapp/todoapp.iml" />
     </modules>

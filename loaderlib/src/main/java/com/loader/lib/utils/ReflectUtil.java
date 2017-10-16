@@ -11,7 +11,7 @@ public class ReflectUtil {
         AssetManager mAssetManager = null;
         try {
             AssetManager assetManager = AssetManager.class.newInstance();
-            Method addAssetPath = assetManager.getClass().getMethod("",String.class);
+            Method addAssetPath = assetManager.getClass().getMethod("addAssetPath",String.class);
             addAssetPath.invoke(assetManager,zipPath);
             mAssetManager = assetManager;
         } catch (InstantiationException e) {

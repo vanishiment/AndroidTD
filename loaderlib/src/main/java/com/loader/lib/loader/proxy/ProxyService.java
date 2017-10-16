@@ -1,4 +1,4 @@
-package com.loader.lib;
+package com.loader.lib.loader.proxy;
 
 import android.app.Service;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.loader.lib.loader.core.DexLoader;
+import com.loader.lib.loader.core.OnClassLoadListener;
+import com.loader.lib.loader.core.PluginLoader;
 import com.loader.lib.utils.ReflectUtil;
 
 import java.lang.reflect.Constructor;
@@ -42,7 +45,9 @@ public class ProxyService extends Service {
             pluginLoader.loadClass(className, new OnClassLoadListener() {
                 @Override
                 public void onLoadClass(boolean result, Class<?> clazz) {
+                    Log.e(TAG, "onLoadClass: result " + result );
                     if (result){
+                        Log.e(TAG, "onLoadClass: " + clazz.getName() );
                         loadResource(DexLoader.getInstance().getDexPath());
                         try {
                             Constructor<?> pluginClzCons = clazz.getConstructor();

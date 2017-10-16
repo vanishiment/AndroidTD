@@ -1,4 +1,4 @@
-package com.loader.lib;
+package com.loader.lib.loader.core;
 
 import android.content.Context;
 import android.os.Handler;
@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.loader.lib.utils.AsyncTask;
 import java.io.File;
 
 import dalvik.system.DexClassLoader;
@@ -14,6 +15,7 @@ public class PluginLoader {
 
     private static final String TAG = "PluginLoader";
 
+    private Context mContext;
     private DexLoader mDexLoader;
     private DexClassLoader mDCL;
     private ClassLoader mContextClassLoader;
@@ -23,11 +25,12 @@ public class PluginLoader {
     private Handler mMainHandler = new Handler(Looper.getMainLooper());
 
     public PluginLoader(Context context) {
+        mContext = context;
         mDexLoader = DexLoader.getInstance();
         mDCL = mDexLoader.getDexClassLoader();
         mContextClassLoader = context.getClassLoader();
-        zipPath = context.getCacheDir().getAbsolutePath() + File.separator + "zip";
-        dexPath = context.getCacheDir().getAbsolutePath() + File.separator + "dex";
+        zipPath = context.getFilesDir().getAbsolutePath() + File.separator + "zip" + File.separator + "plugin.apk";
+        dexPath = context.getFilesDir().getAbsolutePath() + File.separator + "dex" + File.separator;
     }
 
     public synchronized void loadClass(final String className, final OnClassLoadListener loadListener) {
@@ -63,7 +66,7 @@ public class PluginLoader {
         }
     }
 
-    private class LoaderTask extends com.loader.lib.AsyncTask<Object,Void,DexClassLoader>{
+    private class LoaderTask extends AsyncTask<Object,Void,DexClassLoader> {
 
         private String className;
         private OnClassLoadListener listener;
@@ -75,13 +78,21 @@ public class PluginLoader {
             className = (String) params[0];
             listener = (OnClassLoadListener) params[1];
             zipPath = (String) params[2];
-            dexPath = (String) params[3];
+            File zip = new File(zipPath);
+            Log.e(TAG, "doInBackground: " + zip.exists() );
+            Log.e(TAG, "doInBackground: zipPath" + zipPath );
+            dexOutputPath = (String) params[3];
+            Log.e(TAG, "doInBackground: dexDir" + dexOutputPath );
+            File outDir = new File(dexOutputPath);
+            if (!outDir.exists()){
+                outDir.mkdirs();
+            }
             if (!TextUtils.isEmpty(zipPath)){
                 mDexLoader.setDexPath(zipPath);
                 try {
                     mDCL = new DexClassLoader(zipPath,dexOutputPath,null,ClassLoader.getSystemClassLoader());
                 }catch (Exception e){
-                    Log.e(TAG, "class load error:" + e.getLocalizedMessage() );
+                    e.printStackTrace();
                     File zipFile = new File(zipPath);
                     if (zipFile.exists() && zipFile.isFile()){
                         zipFile.delete();
@@ -106,6 +117,7 @@ public class PluginLoader {
                         listener.onLoadClass(false,null);
                     }
                 } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
                     listener.onLoadClass(false,null);
                 }
             }else {
