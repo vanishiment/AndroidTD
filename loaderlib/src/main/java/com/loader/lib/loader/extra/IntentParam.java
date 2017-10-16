@@ -5,6 +5,6 @@ public interface IntentParam {
   String FROM = "extra_from";
   String CLASS = "extra_class";
   String ACTION = "extra_action";
-  String SERVICE_ID = "extra_";
+  String SERVICE_ID = "extra_service_id";
 
 }
