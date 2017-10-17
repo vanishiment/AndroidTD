@@ -16,6 +16,9 @@ import com.loader.lib.utils.ReflectUtil;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
+/*
+* 通过模拟Service
+* */
 public class ProxyService extends Service {
 
     private static final String TAG = "ProxyService";
