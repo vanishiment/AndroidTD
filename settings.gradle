@@ -1,5 +1,1 @@
-<<<<<<< .merge_file_U5WWlH
-include ':app', ':loaderlib', ':pluginlib'
-=======
-include ':app', ':todoapp', ':loaderlib', ':pluginlib', ':myplugin'
->>>>>>> .merge_file_4RaiuM
+include ':app', ':loaderlib', ':pluginlib', ':myplugin'
