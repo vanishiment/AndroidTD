@@ -1,4 +1,4 @@
-package com.loader.lib;
+package com.loader.lib.loader.core;
 
 import dalvik.system.DexClassLoader;
 
