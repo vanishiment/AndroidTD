@@ -1,1 +1,1 @@
-include ':app', ':loaderlib', ':pluginlib', ':myplugin'
+include ':app'
